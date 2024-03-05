@@ -1,0 +1,57 @@
+.bottomSectionTitleWrapper{
+    display: flex;
+    justify-content: space-between;
+    /*gap: 10px;*/
+}
+.countRecipesTextWrapper{
+    display: flex;
+    align-items: end;
+    font-size: 18px;
+    font-weight: bold;
+}
+.countRecipesTextWrapper > div {
+    font-size: 26px;
+    font-weight: bold;
+    color: #ffc800;
+}
+.orderListWrapper{
+    display: flex;
+}
+.orderListWrapper> li{
+    list-style: none;
+    padding: 6px 22px;
+    border: 1px solid #d9d9d9;
+    font-weight: bold;
+}
+.orderActiveLi {
+    background: #ffc800;
+}
+.postContainer {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    gap: 10px;
+}
+.postItem {
+    width: 24%;
+    height: 300px;
+    padding: 10px;
+    /*background: #ced4da;*/
+    display: flex;
+    flex-direction: column;
+}
+.postItemImgWrapper{
+    position: relative;
+    height: 250px;
+}
+.postItemImgWrapper > img{
+    z-index: 10;
+}
+.postItemImg {
+    height: 100%;
+}
+.postItemLabelWrapper{
+    height: 50px;
+}
