@@ -1,0 +1,30 @@
+.topRightWrapper{
+    width: 338px;
+    display: inline-flex;
+    flex-direction: column;
+    /*justify-content: center;*/
+    align-items: center;
+    gap: 10px;
+}
+.wellcomeText {
+    font-size: 18px;
+    font-weight: bold;
+}
+.createRecipeBtn {
+    width: 200px;
+    height: 40px;
+    background: #ffc800;
+    border: none;
+    border-radius: 5px;
+    font-weight: bold;
+    font-size: 16px;
+
+}
+.logOutBtn{
+    width: 60px;
+    height: 30px;
+    background: #ffc800;
+    border: none;
+    border-radius: 5px;
+    font-weight: bold;
+}

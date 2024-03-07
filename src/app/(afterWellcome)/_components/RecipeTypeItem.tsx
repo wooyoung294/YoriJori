@@ -1,13 +1,19 @@
-import React from 'react';
+'use client'
+import React, {useEffect} from 'react';
 import styles from "@/app/(afterWellcome)/_components/recipeTypeItem.module.css";
 import Link from "next/link";
 import Image from "next/image";
+import {useSelectedLayoutSegment} from "next/navigation";
 type RecipeTypeItemProps = {
-    url:string,
-    label:string,
-    imageSrc:File
+    item: {
+        url: string,
+        label: string,
+        imageSrc: File
+    }
 }
-function RecipeTypeItem({url,imageSrc,label}:RecipeTypeItemProps) {
+function RecipeTypeItem({item}:RecipeTypeItemProps) {
+    const {url,imageSrc,label} =item;
+
     return (
         <Link href={url}>
             <div className={styles.recipeTypeItem}>

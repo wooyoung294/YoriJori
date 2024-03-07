@@ -27,18 +27,15 @@
     background: #ffc800;
 }
 .postContainer {
-    display: flex;
-    justify-content: space-between;
-    flex-wrap: wrap;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr 1fr 1fr 1fr;
     padding-top: 10px;
     padding-bottom: 10px;
     gap: 10px;
 }
 .postItem {
-    width: 24%;
-    height: 300px;
     padding: 10px;
-    /*background: #ced4da;*/
     display: flex;
     flex-direction: column;
 }
