@@ -1,5 +1,5 @@
 import Kakao from "@auth/core/providers/kakao"
-import NextAuth, {NextAuthConfig} from "next-auth";
+import NextAuth from "next-auth";
 
 export const {
     handlers: { GET, POST },
@@ -7,9 +7,7 @@ export const {
     signIn,
 } = NextAuth({
     pages:{
-        //TODO: 로그인페이지 퍼블리싱
-
-        // signIn:'/'
+        signIn:'/'
     },
     providers: [
         Kakao({ clientId: process.env.NEXT_PUBLIC_KAKAO_CLIENT_ID, clientSecret: process.env.NEXT_PUBLIC_KAKAO_CLIENT_SECRET})

@@ -1,0 +1,11 @@
+.anonymousLoginBtn{
+    width: 183px;
+    height: 45px;
+    margin-top: 10px;
+    border: none;
+    background: darkgray;
+    border-radius: 6px;
+    font-weight: bold;
+    font-size: 13px;
+    cursor: pointer;
+}
