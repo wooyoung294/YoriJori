@@ -1,0 +1,19 @@
+.bottomSectionTitleWrapper{
+    display: flex;
+    justify-content: space-between;
+    /*gap: 10px;*/
+}
+.countRecipesTextWrapper{
+    display: flex;
+    align-items: end;
+    font-size: 18px;
+    font-weight: bold;
+}
+.countRecipesTextWrapper > div {
+    font-size: 26px;
+    font-weight: bold;
+    color: #ffc800;
+}
+.orderListWrapper{
+    display: flex;
+}

@@ -1,0 +1,11 @@
+.orderListItemLi {
+    list-style: none;
+    padding: 6px 22px;
+    border: 1px solid #d9d9d9;
+    font-weight: bold;
+    cursor: pointer;
+}
+.orderActiveLi {
+    background: #ffc800;
+}
+

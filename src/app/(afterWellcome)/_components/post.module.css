@@ -1,0 +1,18 @@
+.postItem {
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+}
+.postItemImgWrapper{
+    position: relative;
+    height: 250px;
+}
+.postItemImgWrapper > img{
+    z-index: 10;
+}
+.postItemImg {
+    height: 100%;
+}
+.postItemLabelWrapper{
+    height: 50px;
+}

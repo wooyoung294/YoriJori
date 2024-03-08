@@ -1,14 +1,12 @@
-'use client'
-import React, {useEffect} from 'react';
+import React from 'react';
 import styles from "@/app/(afterWellcome)/_components/recipeTypeItem.module.css";
 import Link from "next/link";
-import Image from "next/image";
-import {useSelectedLayoutSegment} from "next/navigation";
+import Image, {StaticImageData} from "next/image";
 type RecipeTypeItemProps = {
     item: {
         url: string,
         label: string,
-        imageSrc: File
+        imageSrc:  StaticImageData
     }
 }
 function RecipeTypeItem({item}:RecipeTypeItemProps) {
@@ -17,7 +15,7 @@ function RecipeTypeItem({item}:RecipeTypeItemProps) {
     return (
         <Link href={url}>
             <div className={styles.recipeTypeItem}>
-                <Image className={styles.recipeTypeImg} src={imageSrc} alt={label} priority={'empty'}/>
+                <Image className={styles.recipeTypeImg} src={imageSrc} alt={label} priority/>
                 <span className={styles.recipeTypeLabel}>{label}</span>
             </div>
         </Link>
