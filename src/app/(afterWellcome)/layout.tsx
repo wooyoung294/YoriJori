@@ -22,32 +22,32 @@ type recipeTypeItem = {
 }
 const recipeTypeItems: recipeTypeItem[] = [
     {
-        url: "/home",
+        url: "/home?order=recommend",
         imageSrc: all,
         label: "전체"
     },
     {
-        url: "/main",
+        url: "/main?order=recommend",
         imageSrc: main,
         label: "메인반찬"
     },
     {
-        url: "/sub",
+        url: "/sub?order=recommend",
         imageSrc: sub,
         label: "밑반찬"
     },
     {
-        url: "/soup",
+        url: "/soup?order=recommend",
         imageSrc: soup,
         label: "찌개/국"
     },
     {
-        url: "/rice",
+        url: "/rice?order=recommend",
         imageSrc: rice,
         label: "밥"
     },
     {
-        url: "/pasta",
+        url: "/pasta?order=recommend",
         imageSrc: pasta,
         label: "면"
     }
