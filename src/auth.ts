@@ -14,15 +14,12 @@ export const {
     ],
     callbacks: {
         jwt({ token}) {
-            console.log('auth.ts jwt', token);
             return token;
         },
         session(a) {
-            console.log('auth.ts session',a);
             return a.session;
         },
         signIn({user,profile}){
-            console.log('auth.ts signIn',user,profile)
             return true;
         }
     },

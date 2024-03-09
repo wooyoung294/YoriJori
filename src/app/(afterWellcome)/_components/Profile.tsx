@@ -7,7 +7,6 @@ import KakaoLoginBtn from "@/app/(afterWellcome)/_components/KakaoLoginBtn";
 
 function Profile() {
     const {data:user} = useSession()
-    console.log('user',user)
     const router = useRouter();
     const onLogOut = ()=>{
         signOut({redirect:false})
