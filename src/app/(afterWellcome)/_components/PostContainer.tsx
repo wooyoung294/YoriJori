@@ -1,17 +1,17 @@
 "use client";
 import React from "react";
 import styles from "@/app/(afterWellcome)/_components/postConainer.module.css";
-import {  useQuery } from "@tanstack/react-query";
+import { useQuery } from "@tanstack/react-query";
 import Post from "@/app/(afterWellcome)/_components/Post";
 import BottomTitleWrapper from "@/app/(afterWellcome)/_components/BottomTitleWrapper";
 import { getRecipePosts, Recipe } from "@/app/api/recipe";
-import { usePathname } from "next/navigation";
+import { useParams } from "next/navigation";
 
 function PostContainer() {
-    const path = usePathname();
-
+    const params = useParams();
+    const {category} = params
     const { data, isLoading, isError } =
-        useQuery({ queryKey: ["recipe", "posts"], queryFn: () => getRecipePosts(path) });
+        useQuery({ queryKey: ["recipe", "posts"], queryFn: () => getRecipePosts(category as string) });
 
     if (isError) {
         return "실패";
