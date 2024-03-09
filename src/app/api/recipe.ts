@@ -9,9 +9,12 @@ export interface Recipe {
 
 export async function getRecipePosts(
     category: string = "",
-    order: "recommend" | "new" | "view" = "recommend") {
+    order: "recommend" | "new" | "view" = "recommend",
+    searchText:string = ""
+    )
+{
     const res = await fetch(
-        `http://localhost:9090/api/food?category=${category}&order=${order}`,
+        `http://localhost:9090/api/food?category=${category}&order=${order}&searchText=${searchText}`,
         {
             next: {
                 tags: ["recipe", "posts"]
@@ -21,6 +24,5 @@ export async function getRecipePosts(
     if (!res.ok) {
         throw new Error("Failed to getRecipePosts");
     }
-    console.log("category", category);
     return res.json();
 }
