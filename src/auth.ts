@@ -19,7 +19,7 @@ export const {
         session(a) {
             return a.session;
         },
-        signIn({user,profile}){
+        signIn(){
             return true;
         }
     },
