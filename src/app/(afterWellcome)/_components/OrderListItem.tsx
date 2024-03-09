@@ -1,43 +1,62 @@
-'use client'
+"use client";
 import React from "react";
-import { useMutation, useQueryClient } from "@tanstack/react-query";
-import { getRecipePosts, Recipe } from "@/app/api/recipe";
-import styles from "./orderListItem.module.css"
-import cx from 'classnames'
+import styles from "./orderListItem.module.css";
+import cx from "classnames";
+import useRecipePosts from "@/app/(afterWellcome)/_lib/getPostRecipesMutation";
+import { usePathname, useRouter } from "next/navigation";
+import { useSearchTextStore } from "@/app/(afterWellcome)/_store/zustandStore";
+
 type orderListItemProps = {
-    text:string,
-    queryKey:string,
-    active:boolean,
-    handledActive:Function
+    text: string,
+    queryKey: string,
+    active: boolean,
+    handledActive: Function,
 }
-function OrderListItem({text,queryKey,active,handledActive}:orderListItemProps) {
-    const queryClient = useQueryClient();
-    const onSuccess = (data:Recipe[]) =>{
-        queryClient.setQueryData(
-            ["recipe", "posts"],data
-        )
-    }
+type orderListItem = {
+    text: string,
+    queryKey: string,
+    active: boolean,
+}
 
-    const {mutate:getRecipePostsFitOrder} =
-        useMutation({
-            mutationFn:(order: "recommend" | "new" | "view")=>
-                getRecipePosts('main',order),onSuccess
-        })
+function OrderListItem({
+                           text,
+                           queryKey,
+                           active,
+                           handledActive
+                       }: orderListItemProps) {
 
-    const onClick:Function = (order: "recommend" | "new" | "view")=>{
-        getRecipePostsFitOrder(order)
-        handledActive((prevValues:orderListItemProps[])=>(
-            prevValues.map(prevValue=>
+    const path = usePathname();
+    const { searchText } = useSearchTextStore();
+    const router = useRouter();
+    const { getRecipePostsMutation } = useRecipePosts();
+    const onClick: Function = (order: "recommend" | "new" | "view") => {
+        getRecipePostsMutation(order);
+        handledActive((prevValues: orderListItem[]) => (
+            prevValues.map(prevValue =>
                 prevValue.queryKey === order
-                    ? {...prevValue,active:true}
-                    : {...prevValue,active:false}
+                    ? {
+                        ...prevValue,
+                        active: true
+                    }
+                    : {
+                        ...prevValue,
+                        active: false
+                    }
             )
-        ))
-    }
+        ));
+        if(path === '/search'){
+            router.push(`${path}?searchText=${searchText}&order=${queryKey}`)
+        }
+        else{
+            router.push(`${path}?searchText=${searchText}&order=${queryKey}`)
+        }
+    };
     return (
-        <li className={active ? cx(styles.orderListItemLi,styles.orderActiveLi):styles.orderListItemLi} onClick={()=>onClick(queryKey)}>
+        <li className={active ? cx(styles.orderListItemLi, styles.orderActiveLi) : styles.orderListItemLi}
+            onClick={() => onClick(queryKey)}>
             {text}
         </li>
+
     );
 }
 
