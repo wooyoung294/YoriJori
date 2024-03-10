@@ -20,7 +20,7 @@ function BottomTitleWrapper({count}:bottomTitleWrapperProps) {
         ])
     return (
         <div className={styles.bottomSectionTitleWrapper}>
-            <div className={styles.countRecipesTextWrapper}>총 <div>{count}</div> 개의 맛있는 레시피가 있습니다.</div>
+            <div className={styles.countRecipesTextWrapper}>총&nbsp;<div>{count.toLocaleString()}</div>&nbsp;개의 맛있는 레시피가 있습니다.</div>
             <ul className={styles.orderListWrapper}>
                 {
                     orderList.map(({ text,queryKey,active })=>

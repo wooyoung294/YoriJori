@@ -16,3 +16,11 @@
 .postItemLabelWrapper{
     height: 50px;
 }
+.postItemLabelInnerWrapper{
+    display: flex;
+    justify-content: space-between;
+}
+.viewWrapper{
+    display: flex;
+    align-items: center;
+}
