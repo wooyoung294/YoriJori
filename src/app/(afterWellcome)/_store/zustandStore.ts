@@ -9,3 +9,13 @@ export const useSearchTextStore = create<searchTextStoreType>((set)=>({
     onChange: (e:React.ChangeEvent<HTMLInputElement>)=>
         set(() => ({searchText:e.currentTarget.value}))
 }))
+type createRecipeModalStoreType = {
+    active:boolean,
+    handledOpen:React.MouseEventHandler<HTMLButtonElement>,
+    handledClose:React.MouseEventHandler<HTMLButtonElement>,
+}
+export const useCreateRecipeModalStore = create<createRecipeModalStoreType>((set)=>({
+    active: false,
+    handledOpen: ()=> set(() => ({active:true})),
+    handledClose: ()=> set(() => ({active:false}))
+}))

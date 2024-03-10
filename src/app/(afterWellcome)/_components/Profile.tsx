@@ -1,13 +1,16 @@
 'use client'
+
 import React from 'react';
 import styles from "@/app/(afterWellcome)/_components/profile.module.css";
 import {signOut, useSession} from "next-auth/react";
 import {useRouter} from "next/navigation";
 import KakaoLoginBtn from "@/app/(afterWellcome)/_components/KakaoLoginBtn";
+import { useCreateRecipeModalStore } from "@/app/(afterWellcome)/_store/zustandStore";
 
 function Profile() {
     const {data:user} = useSession()
     const router = useRouter();
+    const {handledOpen} = useCreateRecipeModalStore()
     const onLogOut = ()=>{
         signOut({redirect:false})
             .then(()=>router.replace('/'));
@@ -29,7 +32,7 @@ function Profile() {
                 &nbsp;
                 <button className={styles.logOutBtn} onClick={onLogOut}>LogOut</button>
             </div>
-            <button className={styles.createRecipeBtn}>나만의 레시피 등록하기</button>
+            <button className={styles.createRecipeBtn} onClick={handledOpen}>나만의 레시피 등록하기</button>
         </div>
 
     );
