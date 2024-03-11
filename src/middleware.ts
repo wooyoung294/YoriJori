@@ -3,7 +3,6 @@ import {NextResponse} from "next/server";
 
 export async function middleware() {
     const session = await auth();
-    console.log(session);
     if (!session) {
         return NextResponse.redirect('http://localhost:3000');
     }

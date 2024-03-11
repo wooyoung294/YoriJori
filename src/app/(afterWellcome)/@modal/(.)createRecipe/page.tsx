@@ -69,7 +69,6 @@ export default function CreateRecipeModal() {
         const formData = new FormData(e.target as HTMLFormElement);
         formData.append("createdAt", now);
         formData.append("user", user?.user?.name as string);
-        console.log(formData);
         createRecipeMutation(formData);
     };
 
