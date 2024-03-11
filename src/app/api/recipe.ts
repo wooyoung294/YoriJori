@@ -44,7 +44,23 @@ export async function createRecipe(formData:FormData)
         })
     if (!res.ok) {
         console.error("Error fetching data:", res.statusText);
-        throw new Error("Failed to getRecipePosts");
+        throw new Error("Failed to createRecipe");
+    }
+    return res.json();
+}
+export async function getRecipeDetail(postId: string) {
+    const res = await fetch(
+        `http://localhost:8080/api/food/detail?postId=${postId}`,
+        {
+            method:'GET',
+            next: {
+                tags: ["recipe", "detail"]
+            },
+            cache: "no-store"
+        })
+    if (!res.ok) {
+        console.error("Error fetching data:", res.statusText);
+        throw new Error("Failed to getRecipeDetail");
     }
     return res.json();
 }

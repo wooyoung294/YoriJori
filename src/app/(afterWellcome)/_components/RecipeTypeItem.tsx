@@ -14,6 +14,7 @@ type RecipeTypeItemProps = {
 function RecipeTypeItem({item}:RecipeTypeItemProps) {
     const {url,imageSrc,label} =item;
     const {setInitValue} = useSearchTextStore()
+    console.log(url)
     const onClick =()=>{
         setInitValue();
     }
