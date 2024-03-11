@@ -3,7 +3,7 @@ import styles from "@/app/(afterWellcome)/_components/post.module.css";
 import Image from "next/image";
 import { Recipe } from "@/app/api/recipe";
 import { timeForToday } from "@/app/(afterWellcome)/_lib/timeForToday";
-import eye from "../../../../public/etcIcon/eye.svg"
+import eye from "../../../../public/etcImg/eye.svg"
 type postProps = {
     recipe: Recipe
 }
