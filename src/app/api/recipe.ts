@@ -62,3 +62,20 @@ export async function getRecipeDetail(postId: string) {
     }
     return res.json();
 }
+
+export async function increaseViewCount(postId: string) {
+    const res = await fetch(
+        `http://localhost:8080/api/increaseViewCount?postId=${postId}`,
+        {
+            method:'PATCH',
+            next: {
+                tags: ["increase", "views"]
+            },
+            cache: "no-store"
+        })
+    if (!res.ok) {
+        console.error("Error fetching data:", res.statusText);
+        throw new Error("Failed to getRecipeDetail");
+    }
+    return res.json();
+}

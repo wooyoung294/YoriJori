@@ -1,10 +1,10 @@
 'use client'
-import React from "react";
+import React, { useEffect } from "react";
 import styled from './page.module.css'
 import Image from "next/image";
 import { useParams } from "next/navigation";
 import { useQuery } from "@tanstack/react-query";
-import { getRecipeDetail } from "@/app/api/recipe";
+import { getRecipeDetail, increaseViewCount } from "@/app/api/recipe";
 export default function RecipeDetail() {
     const params = useParams();
     const {postId} = params;
@@ -13,6 +13,9 @@ export default function RecipeDetail() {
             { queryKey: ["recipe", "detail"],
                 queryFn: () => getRecipeDetail(postId as string) }
         );
+    useEffect(()=>{
+        increaseViewCount(postId as string)
+    },[postId])
     if (isError) {
         return "실패";
     }
