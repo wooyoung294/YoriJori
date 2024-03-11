@@ -18,8 +18,3 @@ export const useSearchTextStore = create<searchTextStoreType>((set)=>({
         set(()=>({order:"recommend",searchText:''}))
     }
 }))
-type createRecipeModalStoreType = {
-    active:boolean,
-    handledOpen:React.MouseEventHandler<HTMLButtonElement>,
-    handledClose:React.MouseEventHandler<HTMLButtonElement>,
-}
