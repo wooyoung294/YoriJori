@@ -38,8 +38,13 @@
 }
 .bottomSectionWrapper {
     width: 100%;
-    /*height: 100dvh;*/
+    height: 80%;
     margin-top: 10px;
-    /*display: flex;*/
-    /*justify-content: space-between;*/
+}
+@media (max-width: 1400px) {
+    .bottomSectionWrapper {
+        width: 100%;
+        height: 70%;
+        margin-top: 10px;
+    }
 }

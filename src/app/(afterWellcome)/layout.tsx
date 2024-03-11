@@ -52,7 +52,7 @@ const recipeTypeItems: recipeTypeItem[] = [
         label: "면"
     }
 ];
-export default async function Layout({ children }: { children: React.ReactNode }) {
+export default async function Layout({ children,modal }: { children: React.ReactNode,modal: React.ReactNode }) {
 
     const queryClient = new QueryClient();
     await queryClient.prefetchQuery({
@@ -81,6 +81,7 @@ export default async function Layout({ children }: { children: React.ReactNode }
                     </header>
                     <div className={styles.bottomSectionWrapper}>
                         {children}
+                        {modal}
                     </div>
                 </div>
             </HydrationBoundary>
