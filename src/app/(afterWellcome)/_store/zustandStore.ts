@@ -23,8 +23,3 @@ type createRecipeModalStoreType = {
     handledOpen:React.MouseEventHandler<HTMLButtonElement>,
     handledClose:React.MouseEventHandler<HTMLButtonElement>,
 }
-export const useCreateRecipeModalStore = create<createRecipeModalStoreType>((set)=>({
-    active: false,
-    handledOpen: ()=> set(() => ({active:true})),
-    handledClose: ()=> set(() => ({active:false}))
-}))
