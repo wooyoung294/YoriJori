@@ -3,10 +3,10 @@
 import style from './page.module.css';
 import React,{useState} from "react";
 import { useSession } from "next-auth/react";
-import { useCreateRecipeModalStore } from "@/app/(afterWellcome)/_store/zustandStore";
 import dayjs from "dayjs";
 import { useMutation } from "@tanstack/react-query";
 import { createRecipe, Recipe } from "@/app/api/recipe";
+import { useRouter } from "next/navigation";
 
 type inputValueType ={
     title:string,
@@ -15,12 +15,14 @@ type inputValueType ={
     imageSrc:File|null
 }
 export default function CreateRecipeModal() {
-    const {active,handledClose} = useCreateRecipeModalStore()
     const [formData ,setFormData]
         = useState<inputValueType>({title:'',desc:'',category:'',imageSrc:null});
 
-    const {title,desc, category,imageSrc} = formData
-
+    const { category,imageSrc} = formData
+    const router = useRouter();
+    const b = ()=>{
+        router.back()
+    }
     const onChangeData
         :React.ChangeEventHandler<HTMLInputElement|HTMLTextAreaElement|HTMLSelectElement> =
         (e) => {
@@ -53,13 +55,13 @@ export default function CreateRecipeModal() {
         createRecipeMutation(formData);
     };
     const onChangePassword = () => {};
-    if(active){
+    // if(active){
 
         return (
             <div className={style.modalBackground}>
                 <div className={style.modal}>
                     <div className={style.modalHeader}>
-                        <button className={style.closeButton} onClick={handledClose}>
+                        <button className={style.closeButton} onClick={b}>
                             <svg width={24} viewBox="0 0 24 24" aria-hidden="true"
                                  className="r-18jsvk2 r-4qtqp9 r-yyyyoo r-z80fyv r-dnmrzs r-bnwqim r-1plcrui r-lrvibr r-19wmn03">
                                 <g>
@@ -126,6 +128,6 @@ export default function CreateRecipeModal() {
                 </div>
             </div>
         );
-    }
+    // }
 
 }
