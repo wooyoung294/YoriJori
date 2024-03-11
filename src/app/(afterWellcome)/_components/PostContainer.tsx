@@ -1,18 +1,22 @@
 "use client";
-import React from "react";
+import React, { useEffect } from "react";
 import styles from "@/app/(afterWellcome)/_components/postConainer.module.css";
 import { useQuery } from "@tanstack/react-query";
 import Post from "@/app/(afterWellcome)/_components/Post";
 import BottomTitleWrapper from "@/app/(afterWellcome)/_components/BottomTitleWrapper";
 import { getRecipePosts, Recipe } from "@/app/api/recipe";
 import { useParams } from "next/navigation";
+import { useSearchTextStore } from "@/app/(afterWellcome)/_store/zustandStore";
 
 function PostContainer() {
     const params = useParams();
     const {category} = params
-    const { data, isLoading, isError } =
-        useQuery({ queryKey: ["recipe", "posts"], queryFn: () => getRecipePosts(category as string) });
-
+    const {searchText,order} = useSearchTextStore();
+    const { data, isLoading, isError,refetch } =
+        useQuery({ queryKey: ["recipe", "posts"], queryFn: () => getRecipePosts(category as string,order,searchText) });
+    useEffect(() => {
+        refetch()
+    }, [order, refetch]);
     if (isError) {
         return "실패";
     }
