@@ -4,12 +4,14 @@ import Image from "next/image";
 import { Recipe } from "@/app/api/recipe";
 import { timeForToday } from "@/app/(afterWellcome)/_lib/timeForToday";
 import eye from "../../../../public/etcImg/eye.svg"
+import Link from "next/link";
 type postProps = {
     recipe: Recipe
 }
 
 function Post({ recipe }: postProps) {
     const {
+        postId,
         title,
         user,
         imageSrc,
@@ -17,7 +19,7 @@ function Post({ recipe }: postProps) {
         createdAt
     } = recipe;
     return (
-        <div className={styles.postItem}>
+        <Link href={`/detail/${postId}`} className={styles.postItem}>
             <div className={styles.postItemImgWrapper}>
                 <Image src={`data:image/jpeg;base64,${imageSrc}`} width={218} height={240} priority alt={"이미지"} />
             </div>
@@ -38,7 +40,7 @@ function Post({ recipe }: postProps) {
                     </div>
                 </div>
             </div>
-        </div>
+        </Link>
     );
 }
 
