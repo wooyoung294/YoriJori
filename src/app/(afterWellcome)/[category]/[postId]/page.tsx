@@ -25,16 +25,18 @@ export default function RecipeDetail() {
     return (
         <div className={styled.recipeDetailWrapper}>
             <div className={styled.imgWrapper}>
-                <Image src={`data:image/jpeg;base64,${data.imageSrc}`}
-                       alt={'테스트'}
+                <Image className={styled.i} src={`data:image/jpeg;base64,${data.imageSrc}`}
+                       alt={'이미지'}
                        fill
                 />
             </div>
             <div className={styled.textWrapper}>
                 <h2> {data.title} </h2>
                 <br/>
+                <div className={styled.stepTitle}>
+                    조리방법
+                </div>
                 <pre className={styled.recipeStep}>
-                    <h3> 조리방법 </h3>
                     {data.description}
                 </pre>
             </div>
