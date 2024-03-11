@@ -4,8 +4,19 @@
     margin-top: 10px;
     border: none;
     background: darkgray;
-    border-radius: 6px;
     font-weight: bold;
     font-size: 13px;
     cursor: pointer;
+    font-family: sans-serif;
+    padding: 10px 20px 10px 17px;
+    border-radius: 5px;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
 }
+.anonymousLoginBtnImg {
+    margin-right: 24px; /* 로고와 텍스트 사이의 간격 */
+    width: 20px; /* 로고 크기 */
+    height: 20px; /* 로고 크기 */
+}
+

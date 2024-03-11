@@ -1,0 +1,25 @@
+@keyframes loginAni {
+    to {
+        background-position: -3916px 0;
+        /*background-position: -4272px 0;*/
+        /*transform: scale(1.5);*/
+        .animationInnerWrapper{
+            display: block;
+        }
+
+    }
+}
+.animationImgWrapper{
+    display: flex;
+    position: fixed;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 356px;
+    height: 510px;
+    background: url("../../../../public/etcImg/rsprite.png") no-repeat 0 0 / auto 510px;
+    animation: loginAni 1.9s steps(11) forwards;
+}
+.animationInnerWrapper{
+    display: none;
+}
