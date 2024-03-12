@@ -2,8 +2,6 @@
 import React, { useRef } from "react";
 import styles from "@/app/(afterWellcome)/_components/searchArea.module.css";
 import { useSearchTextStore } from "@/app/(afterWellcome)/_store/zustandStore";
-import { useRouter } from "next/navigation";
-import Link from "next/link";
 
 function SearchArea() {
 
@@ -12,7 +10,6 @@ function SearchArea() {
         onChangeSearchInputValue,
         onChangeSearchText
     } = useSearchTextStore();
-    const router = useRouter();
     const searchTextInput = useRef<HTMLInputElement>(null);
     const onClick: React.MouseEventHandler<HTMLButtonElement> = () => {
         if (!searchTextInput.current?.value) {
