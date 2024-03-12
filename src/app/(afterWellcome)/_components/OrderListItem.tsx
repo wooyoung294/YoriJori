@@ -1,38 +1,38 @@
 "use client";
-import React from "react";
+import React, { useEffect } from "react";
 import styles from "./orderListItem.module.css";
 import cx from "classnames";
-import { usePathname, useRouter } from "next/navigation";
+import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { useSearchTextStore } from "@/app/(afterWellcome)/_store/zustandStore";
 
-type orderListItemProps = {
-    text: string,
-    queryKey: string,
-}
-
-function OrderListItem({
-                           text,
-                           queryKey,
-                       }: orderListItemProps) {
-
+function OrderListItem() {
     const path = usePathname();
-    const { searchText,order,onChangeOrder } = useSearchTextStore();
+    const searchParams = useSearchParams();
+    const { order,onChangeOrder } = useSearchTextStore();
     const router = useRouter();
-    const onClick: Function = () => {
+
+    useEffect(() => {
+        onChangeOrder(searchParams.get("order"))
+    }, [searchParams,onChangeOrder]);
+    const onClick: Function = (queryKey:string) => {
         onChangeOrder(queryKey)
         router.push(`${path}?order=${queryKey}`)
-        if(path === '/search'){
-            router.push(`${path}?searchText=${searchText}&order=${queryKey}`)
-        }
-        else{
-            router.push(`${path}?searchText=${searchText}&order=${queryKey}`)
-        }
     };
     return (
-        <li className={queryKey === order ? cx(styles.orderListItemLi, styles.orderActiveLi) : styles.orderListItemLi}
-            onClick={() => onClick(queryKey)}>
-            {text}
-        </li>
+        <>
+            <li className={"recommend" === order ? cx(styles.orderListItemLi, styles.orderActiveLi) : styles.orderListItemLi}
+                onClick={() => onClick("recommend")}>
+                추천순
+            </li>
+            <li className={'new' === order ? cx(styles.orderListItemLi, styles.orderActiveLi) : styles.orderListItemLi}
+                onClick={() => onClick('new')}>
+                최신순
+            </li>
+            <li className={"view" === order ? cx(styles.orderListItemLi, styles.orderActiveLi) : styles.orderListItemLi}
+                onClick={() => onClick("view")}>
+                조회순
+            </li>
+        </>
 
     );
 }
