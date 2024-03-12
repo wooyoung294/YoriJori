@@ -57,9 +57,15 @@ export default function CreateRecipeModal() {
             ));
         }
     };
+    const onSuccess = async ()=>{
+        router.back();
+        setTimeout(() => {
+            router.replace('/home?order=new');
+        }, 10);
+    }
     const { mutate: createRecipeMutation } = useMutation<Recipe[], unknown, FormData>({
-        mutationFn: (formData: FormData) => createRecipe(formData)
-        // onSuccess
+        mutationFn: (formData: FormData) => createRecipe(formData),
+        onSuccess
     });
     const { data: user } = useSession();
     const onSubmit: React.FormEventHandler<HTMLFormElement> = (e) => {
@@ -70,8 +76,6 @@ export default function CreateRecipeModal() {
         formData.append("createdAt", now);
         formData.append("user", user?.user?.name as string);
         createRecipeMutation(formData);
-        handledClose();
-        alert('레시피가 등록되었습니다.')
     };
 
     return (
@@ -96,6 +100,7 @@ export default function CreateRecipeModal() {
                                    id="imageSrc"
                                    name={"imageSrc"}
                                    type="file"
+                                   required
                                    onChange={(e) => onChangeImg(e)}
                             />
                             <label htmlFor="imageSrc" className={style.fileElementTrigger}>
@@ -108,6 +113,7 @@ export default function CreateRecipeModal() {
                                 <select className={style.oriSelect}
                                         name={"category"}
                                         value={category}
+                                        required
                                         onChange={onChangeData}
                                 >
                                     <option value="">카테고리를 선택해주세요.</option>
@@ -125,6 +131,7 @@ export default function CreateRecipeModal() {
                                    className={style.textElementsStyle}
                                    onChange={onChangeData}
                                    type="text"
+                                   required
                                    placeholder="제목"
                             />
                         </div>
@@ -133,13 +140,13 @@ export default function CreateRecipeModal() {
                                           name={"desc"}
                                           className={style.textElementsStyle}
                                           onChange={onChangeData}
+                                          required
                                           placeholder="설명"
                                 />
                         </div>
                     </div>
                     <div className={style.modalFooter}>
-                        <button className={style.actionButton}>등록하기
-                        </button>
+                        <button className={style.actionButton}>등록하기</button>
                     </div>
                 </form>
             </div>
