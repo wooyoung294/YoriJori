@@ -13,7 +13,7 @@ import Image, { StaticImageData } from "next/image";
 import Profile from "@/app/(afterWellcome)/_components/Profile";
 import RQProvider from "@/app/(afterWellcome)/_components/RQProvider";
 import { dehydrate, HydrationBoundary, QueryClient } from "@tanstack/react-query";
-import { getRecipePosts } from "@/app/api/recipe";
+import { getRecipePosts, Recipe } from "@/app/api/recipe";
 
 type recipeTypeItem = {
     url: string,
@@ -55,9 +55,16 @@ const recipeTypeItems: recipeTypeItem[] = [
 export default async function Layout({ children,modal }: { children: React.ReactNode,modal: React.ReactNode }) {
 
     const queryClient = new QueryClient();
-    await queryClient.prefetchQuery({
-        queryKey: ["recipe", "posts"],
-        queryFn: () => getRecipePosts()
+    await queryClient.prefetchInfiniteQuery<
+        Recipe[],
+        unknown,
+        Recipe[],
+        [_1:string,_2:string,_3:{ category:string|string[],order:string,searchText:string }],
+        number>
+    ({
+        queryKey: ["recipe", "posts",{ category:'home',order:'recommend',searchText:'' }],
+        queryFn: getRecipePosts,
+        initialPageParam: 0
     });
     const dehydratedState = dehydrate(queryClient);
     return (

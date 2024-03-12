@@ -4,21 +4,50 @@ export interface Recipe {
     user: string,
     imageSrc: string,
     views:number,
-    createdAt:string
+    createdAt:string,
+    nextPage:number
+}
+type getRecipePostsProps ={
+    queryKey:[string,string, { category:string|string[],order:string,searchText:string }],
+    pageParam:number
+}
+type getTotalCountProps ={
+    queryKey:[string,string, { category:string|string[],order:string,searchText:string }],
 }
 
 export async function getRecipePosts(
-    category: string = "home",
-    order: "recommend" | "new" | "view" = "recommend",
-    searchText:string = ""
+    {queryKey,pageParam}:getRecipePostsProps,
+
     )
 {
+    const[_key1,_key2,{category,order,searchText}]=queryKey;
     const res = await fetch(
-        `http://localhost:8080/api/food?category=${category}&order=${order}&searchText=${searchText}`,
+        `http://localhost:8080/api/food?category=${category}&order=${order}&searchText=${searchText}&cursor=${pageParam}`,
         {
             method:'GET',
             next: {
-                tags: ["recipe", "posts"]
+                tags: ["recipe", "posts",category as string,order,searchText]
+            },
+            cache: "no-store"
+        })
+    if (!res.ok) {
+        console.error("Error fetching data:", res.statusText);
+        throw new Error("Failed to getRecipePosts");
+    }
+    return res.json();
+}
+
+export async function getTotalCount(
+    {queryKey}:getTotalCountProps,
+)
+{
+    const[_key1,_key2,{category,order,searchText}]=queryKey;
+    const res = await fetch(
+        `http://localhost:8080/api/count?category=${category}&order=${order}&searchText=${searchText}`,
+        {
+            method:'GET',
+            next: {
+                tags: ["recipe", "count",category as string,order,searchText]
             },
             cache: "no-store"
         })
