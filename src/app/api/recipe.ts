@@ -14,7 +14,7 @@ type getRecipePostsProps ={
 type getTotalCountProps ={
     queryKey:[string,string, { category:string|string[],order:string,searchText:string }],
 }
-
+const BaseUrl = process.env.NEXT_PUBLIC_API_BASE_URL
 export async function getRecipePosts(
     {queryKey,pageParam}:getRecipePostsProps,
 
@@ -22,7 +22,7 @@ export async function getRecipePosts(
 {
     const[_key1,_key2,{category,order,searchText}]=queryKey;
     const res = await fetch(
-        `http://localhost:8080/api/food?category=${category}&order=${order}&searchText=${searchText}&cursor=${pageParam}`,
+        `${BaseUrl}/food?category=${category}&order=${order}&searchText=${searchText}&cursor=${pageParam}`,
         {
             method:'GET',
             next: {
@@ -43,7 +43,7 @@ export async function getTotalCount(
 {
     const[_key1,_key2,{category,order,searchText}]=queryKey;
     const res = await fetch(
-        `http://localhost:8080/api/count?category=${category}&order=${order}&searchText=${searchText}`,
+        `${BaseUrl}/count?category=${category}&order=${order}&searchText=${searchText}`,
         {
             method:'GET',
             next: {
@@ -60,7 +60,7 @@ export async function getTotalCount(
 export async function createRecipe(formData:FormData)
 {
     const res = await fetch(
-        `http://localhost:8080/api/createFood`,
+        `${BaseUrl}/createFood`,
         {
             method:'POST',
             body:formData,
@@ -77,7 +77,7 @@ export async function createRecipe(formData:FormData)
 }
 export async function getRecipeDetail(postId: string) {
     const res = await fetch(
-        `http://localhost:8080/api/food/detail?postId=${postId}`,
+        `${BaseUrl}/food/detail?postId=${postId}`,
         {
             method:'GET',
             next: {
@@ -94,7 +94,7 @@ export async function getRecipeDetail(postId: string) {
 
 export async function increaseViewCount(postId: string) {
     const res = await fetch(
-        `http://localhost:8080/api/increaseViewCount?postId=${postId}`,
+        `${BaseUrl}/increaseViewCount?postId=${postId}`,
         {
             method:'PATCH',
             next: {
