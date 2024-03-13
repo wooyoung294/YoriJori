@@ -7,17 +7,6 @@ export const {
     signIn,
 } = NextAuth({
     trustHost:true,
-    cookies: {
-        pkceCodeVerifier: {
-            name: "next-auth.pkce.code_verifier",
-            options: {
-                httpOnly: true,
-                sameSite: "none",
-                path: "/",
-                secure: true,
-            },
-        },
-    },
     pages:{
         signIn:'/'
     },
@@ -25,8 +14,7 @@ export const {
 
         Kakao({
             clientId: process.env.NEXT_PUBLIC_KAKAO_CLIENT_ID,
-            clientSecret: process.env.NEXT_PUBLIC_KAKAO_CLIENT_SECRET,
-            checks: ["state"]
+            clientSecret: process.env.NEXT_PUBLIC_KAKAO_CLIENT_SECRET
         })
     ],
     callbacks: {
