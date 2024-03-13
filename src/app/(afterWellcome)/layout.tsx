@@ -1,11 +1,6 @@
 import React from "react";
 import styles from "@/app/(afterWellcome)/layout.module.css";
-import all from "../../../public/recipetype/all.png";
-import main from "../../../public/recipetype/main.png";
-import sub from "../../../public/recipetype/sub.png";
-import rice from "../../../public/recipetype/rice.png";
-import pasta from "../../../public/recipetype/pasta.png";
-import soup from "../../../public/recipetype/soup.png";
+import {all,soup,sub,rice,pasta,main} from "../../../public/recipetype/recipeTypeIcon"
 import logo from "../../../public/logo.png";
 import RecipeTypeItem from "@/app/(afterWellcome)/_components/RecipeTypeItem";
 import SearchArea from "@/app/(afterWellcome)/_components/SearchArea";
@@ -13,7 +8,7 @@ import Image, { StaticImageData } from "next/image";
 import Profile from "@/app/(afterWellcome)/_components/Profile";
 import RQProvider from "@/app/(afterWellcome)/_components/RQProvider";
 import { dehydrate, HydrationBoundary, QueryClient } from "@tanstack/react-query";
-import { getRecipePosts, Recipe } from "@/app/api/recipe";
+import { getRecipePosts, getTotalCount, Recipe } from "@/app/api/recipe";
 
 type recipeTypeItem = {
     url: string,
@@ -66,6 +61,10 @@ export default async function Layout({ children,modal }: { children: React.React
         queryFn: getRecipePosts,
         initialPageParam: 0
     });
+    await queryClient.prefetchQuery({
+        queryKey:['recipe','count',{ category:'home',order:'recommend',searchText:'' }],
+        queryFn:getTotalCount}
+    )
     const dehydratedState = dehydrate(queryClient);
     return (
         <RQProvider>
@@ -73,7 +72,7 @@ export default async function Layout({ children,modal }: { children: React.React
                 <div className={styles.container}>
                     <header className={styles.topSection}>
                         <div className={styles.logoWrapper}>
-                            <Image className={styles.logo} src={logo} priority alt={"logo"} />
+                            <Image className={styles.logo} src={logo} width={338} height={112} priority alt={"logo"} />
                         </div>
                         <div className={styles.topSearchSection}>
                             <SearchArea />
