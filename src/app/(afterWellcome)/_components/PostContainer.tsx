@@ -13,6 +13,7 @@ function PostContainer() {
     const params = useParams();
     const {category} = params
     const {searchText,order} = useSearchTextStore();
+    const {data:num} = useQuery({queryKey:['recipe','count',{category,order,searchText}],queryFn:getTotalCount})
     const { data,
         isLoading,
         isError,
@@ -36,14 +37,14 @@ function PostContainer() {
                 else{
                     return null;
                 }
-            }
+            },
         });
     const{ref:observer,inView}=useInView({
         // 보이자 마자 바로 호출 할꺼여서 0
-        threshold:0,
+        threshold:0.8,
         delay:2000,
     })
-    const {data:num} = useQuery({queryKey:['recipe','count',{category,order,searchText}],queryFn:getTotalCount})
+
     useEffect(() => {
         if(inView){
             hasNextPage && fetchNextPage()
