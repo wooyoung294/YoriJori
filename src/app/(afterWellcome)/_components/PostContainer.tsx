@@ -70,8 +70,7 @@ function PostContainer() {
                 }
             </div>
             {hasNextPage &&
-                <div className={styles.loadingBar} ref={observer} style={{background:"red"
-                }}><h3>로딩중....</h3></div>
+                <div className={styles.loadingBar} ref={observer}><h3>로딩중....</h3></div>
 
             }
 
